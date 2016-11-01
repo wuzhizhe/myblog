@@ -1,0 +1,45 @@
+{
+  "name": "myblog",
+  "description": "vue2 test",
+  "author": "wuzhizhemu569@gmail.com",
+  "private": true,
+  "scripts": {
+    "dev": "webpack-dev-server --inline --hot --host 127.0.0.1 --port 12317 --config ./webpack.config.dev.js",
+    "build": "cross-env NODE_ENV=production webpack --progress --hide-modules",
+    "devbuild": "webpack -p --config ./webpack.config.dev.js"
+  },
+  "dependencies": {
+    "bootstrap": "^3.3.7",
+    "crypto-js": "^3.1.7",
+    "underscore": "^1.8.3",
+    "vue": "^2.0.3",
+    "vue-async-data": "^1.0.2",
+    "vue-resource": "^1.0.3",
+    "vue-router": "^2.0.1",
+    "vue-strap": "^1.1.29",
+    "vue-validator": "^2.1.7",
+    "vuex": "^2.0.0"
+  },
+  "devDependencies": {
+    "autoprefixer": "^6.4.0",
+    "babel-core": "^6.0.0",
+    "babel-loader": "^6.0.0",
+    "babel-preset-es2015": "^6.14.0",
+    "babel-preset-stage-2": "^6.11.0",
+    "cross-env": "^2.0.0",
+    "css-loader": "^0.23.1",
+    "extract-text-webpack-plugin": "^2.0.0-beta.4",
+    "file-loader": "^0.8.4",
+    "less": "^2.3.1",
+    "less-loader": "^2.2.3",
+    "style-loader": "^0.13.1",
+    "stylus": "^0.54.5",
+    "stylus-loader": "^2.1.2",
+    "typescript": "^2.0.3",
+    "url-loader": "^0.5.7",
+    "vue-loader": "^9.5.1",
+    "webpack": "^2.1.0-beta.25",
+    "webpack-closure-compiler": "2.0.2",
+    "webpack-dev-server": "^2.1.0-beta.0"
+  }
+}
