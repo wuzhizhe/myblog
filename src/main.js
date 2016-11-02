@@ -6,8 +6,15 @@ import Vuex from 'vuex'
 // validator2.0 not support vue2.0 now Date:2016-10-17
 
 import app from './app/App.vue'
-import routes from './routes'
-import { routesUrl } from './routes'
+
+
+// new Vue({
+//   el: '#app',
+//   render: h => h(app)
+// })
+
+import router from './router'
+import { routesUrl } from './router'
 import util from './util/util'
 import sysconfig from './config/config'
 import services from './system/services'
@@ -21,15 +28,11 @@ Vue.use(Vuex)
 Vue.config.devtools = true;
 Vue.config.locale = 'zh-CN'; //en-US zh-TW
 
-const config = {
-    linkActiveClass: 'active',
-    scrollBehavior: () => ({ x: 0, y: 0 }),
-    routes
-}
+
 global.routesUrl = routesUrl
 global.services = services
 
-app.router = new Router(config)
+app.router = router
 new Vue(app).$mount('#app')
 
 //title 多语言
