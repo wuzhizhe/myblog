@@ -9,8 +9,7 @@ const services = {
 		const defaultOptions = {
 			headers: null,
 			params: null,
-			timeout: 60000,
-			emulateJSON: true
+			timeout: 60000
 		};
 		const _options = _.extend(defaultOptions, options);
 		Vue.http

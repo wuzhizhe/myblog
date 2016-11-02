@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import VueResource from 'vue-resource'
 import VueAsyncData from 'vue-async-data'
 import Vuex from 'vuex'
+// import VueValidator from 'vue-validator'
 // validator2.0 not support vue2.0 now Date:2016-10-17
 
 import app from './app/App.vue'
@@ -20,6 +21,7 @@ import sysconfig from './config/config'
 import services from './system/services'
 import locales from './locales'
 
+// Vue.use(VueValidator)
 Vue.use(Router)
 Vue.use(VueResource)
 Vue.use(VueAsyncData)

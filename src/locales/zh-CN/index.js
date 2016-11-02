@@ -7,7 +7,8 @@ export default {
 		i18login: '登录',
 		i18noaccount: '没有账户？',
 		i18loginsucess: '登录成功！',
-		i18loginfailed: '登录失败，用户名或者密码错误！'
+		i18loginfailed: '登录失败，用户名或者密码错误！',
+		i18namepwdrequired: '用户名密码必须填写！'
 	},
 	'signup': {
 		i18username: '用户名',

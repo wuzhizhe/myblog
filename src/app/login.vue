@@ -1,16 +1,16 @@
 <template>
 	<div v-bind:class="styles.container">
-      <form class="form-signin" v-on:submit="beforeSubmit()">
+      <div class="form-signin" >
         <h2 class="form-signin-heading"></h2>
-        <input type="text" v-model="username" id="username" class="form-control" v-bind:placeholder="i18username" required autofocus>
-        <input type="password" v-model="password" id="inputPassword" class="form-control" v-bind:placeholder="i18password" required>
+        <input type="text" v-model="username" id="username" class="form-control" v-bind:placeholder="i18username" required autofocus @keyup.enter="onNameEnter" ref="usernameinput">
+        <input type="password" v-model="password" id="inputPassword" class="form-control" v-bind:placeholder="i18password" required @keyup.enter="onPwdEnter" ref="passwordinput">
         <div class="checkbox">
           <label>
             <input type="checkbox" value="remember-me" v-model="remember">{{i18remember}}
           </label>
         </div>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">{{i18login}}</button>
-      </form>
+        <button class="btn btn-lg btn-primary btn-block" type="submit" @click="beforeSubmit()">{{i18login}}</button>
+      </div>
       <div class="no-count"><a href="#/signup">{{i18noaccount}}</a></div>
     </div> 
 </template>
@@ -38,6 +38,14 @@
 			
 		],
 		methods: {
+			onNameEnter() {
+				if (!this.username) return;
+				this.$refs.passwordinput.focus()
+			},
+			onPwdEnter() {
+				this.beforeSubmit();
+			},
+			// 登录操作
 			login() {
 				let formData = new FormData();
 				formData.append('username', this.username);
@@ -46,16 +54,22 @@
 					username: this.username,
 					password: md5(this.password).toString().toUpperCase()
 				}, (isok, data) => {
-					if (isok) {
-						alert(this.locales.i18loginsucess)
+					if (isok === true) {
+						Myblog.messager.alert(this.locales.i18loginsucess)
+						global.cache.username = this.username;
+						//登录后信息返回
 						location.href = routesUrl.home
 					} else {
-						alert(this.locales.i18loginfailed)
+						Myblog.messager.alert(this.locales.i18loginfailed)
 					}
 				})
 			},
+			//登录前校验
 			beforeSubmit() {
-				if (!this.username || !this.password) return false;
+				if (!this.username || !this.password) {
+					Myblog.messager.alert(this.locales.i18namepwdrequired);
+					return false;
+				}
 				this.login();
 			}
 		}
