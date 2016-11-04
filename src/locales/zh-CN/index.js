@@ -18,6 +18,10 @@ export default {
 		i18telphone: '手机',
 		i18nickname: '昵称',
 		i18signup: '注册',
-		i18hasaccount: '已有账户？'
+		i18hasaccount: '已有账户？',
+		i18signupsuccess: '注册成功！',
+		i18signupfailed: '注册失败！',
+		i18allrequired: '全部必填！',
+		i18passwordequal: '两次输入密码必须相同！'
 	}
 }

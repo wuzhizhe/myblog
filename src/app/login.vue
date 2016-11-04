@@ -1,5 +1,5 @@
 <template>
-	<div v-bind:class="styles.container">
+	<div>
       <div class="form-signin" >
         <h2 class="form-signin-heading"></h2>
         <input type="text" v-model="username" id="username" class="form-control" v-bind:placeholder="i18username" required autofocus @keyup.enter="onNameEnter" ref="usernameinput">
@@ -18,14 +18,12 @@
 	import Vue from 'vue'
 	import md5 from 'crypto-js/md5'
 	import locales from '../locales'
-	import styles from './login.css'
 	export default {
 		beforeCreate() {
 			this.data = {
 				username: '',
 				password: '',
-				remember: '',
-				styles: styles
+				remember: ''
 			};
 			this.locales = locales[Vue.config.locale]['login'];
 		},

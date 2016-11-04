@@ -1,7 +1,8 @@
 import Vue from 'vue'
 
 const serviceUrl = {
-	'login': 'login'
+	'login': 'login',
+	'regist': 'regist'
 };
 
 const services = {
@@ -39,6 +40,14 @@ const services = {
 			password: params.password
 		};
 		this.vueResource(url, data, {}, (isok, data) => {
+			if (callback) {
+				callback(isok, data);
+			}
+		});
+	},
+	regist(params, callback) {
+		const url = global.domain + serviceUrl.regist;
+		this.vueResource(url, params, {}, (isok, data) => {
 			if (callback) {
 				callback(isok, data);
 			}
