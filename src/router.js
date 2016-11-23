@@ -1,12 +1,14 @@
+import Router from 'vue-router'
 import login from './app/login.vue'
 import home from './app/home.vue'
 import signup from './app/signup.vue'
-import Router from 'vue-router'
+import write from './app/write.vue'
 
 let routes = [
     { path: '/login', component: login },
     { path: '/home', component: home },
     { path: '/signup', component: signup },
+    { path: '/write', component: write },
     { path: '*', redirect: '/login' }
 ]
 
@@ -18,9 +20,17 @@ const config = {
 
 let router = new Router(config)
 
-router.beforeEach((to, from, next) => {
-    next();
-})
+// router.beforeEach((to, from, next) => {
+//     if (global.localStorage.userinfo && to.path === '/login') {
+//         next('/home')
+//     } else if (!global.localStorage.userinfo && to.path === '/login') {
+//         next()
+//     } else if (!global.localStorage.userinfo && to.path !== '/login') {
+//         next('/login')
+//     } else {
+//         next()
+//     }
+// })
 
 export default router
 

@@ -54,9 +54,12 @@
 				}, (isok, data) => {
 					if (isok === true) {
 						Myblog.messager.alert(this.locales.i18loginsucess)
-						global.cache.username = this.username;
+						let userinfo = JSON.stringify(data);
+						global.localStorage.setItem('userinfo', userinfo);
 						//登录后信息返回
-						location.href = routesUrl.home
+						setTimeout(function() {
+							location.href = routesUrl.home
+						}, 200)
 					} else {
 						Myblog.messager.alert(this.locales.i18loginfailed)
 					}
@@ -73,7 +76,7 @@
 		}
 	}
 </script>
-<style>
+<style scoped>
 	
 	.form-signin,
 	.no-count {
