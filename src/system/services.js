@@ -2,7 +2,8 @@ import Vue from 'vue'
 
 const serviceUrl = {
 	'login': 'login',
-	'regist': 'regist'
+	'regist': 'regist',
+	'uploadImage': 'uploadImage'
 };
 
 const services = {
@@ -48,6 +49,17 @@ const services = {
 	regist(params, callback) {
 		const url = global.domain + serviceUrl.regist;
 		this.vueResource(url, params, {}, (isok, data) => {
+			if (callback) {
+				callback(isok, data);
+			}
+		});
+	},
+	uploadImage(params, callback) {
+		const url = global.domain + serviceUrl.uploadImage;
+		const paras = {
+			images: params
+		}
+		this.vueResource(url, paras, {}, (isok, data) => {
 			if (callback) {
 				callback(isok, data);
 			}

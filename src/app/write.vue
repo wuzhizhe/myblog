@@ -3,6 +3,7 @@
 		<div class="text-editor" ></div>
 		<button @click="getContent()">获取数据</button>
 		<div class="content-show" v-html="content"></div>
+		<input type="file" style="display:none;" ref="uploadimagefile" multiple accept="image/*" @change="uploadImage()">
 	</div>
 </template>
 <script>
@@ -57,10 +58,36 @@
 			getContent() {
 				this.content = this.quill.container.firstChild.innerHTML;
 			},
-			imageHandler() {
-				var range = this.quill.getSelection();
-				var value = prompt('What is the image URL');
-				this.quill.insertEmbed(range.index, 'image', value, Quill.sources.USER);
+			imageHandler(image, callback) {
+				this.$refs.uploadimagefile.click();
+			},
+			uploadImage() {
+				let postArray = [];
+				let files = this.$refs.uploadimagefile.files;
+				for (let i = 0; i < files.length; i++) {
+				    let file = files[i];
+				    let imageType = /^image\//;
+				    
+				    if (!imageType.test(file.type)) {
+				      continue;
+				    }
+				    
+				    let reader = new FileReader();
+				    reader.onload = function(e) { 
+			    		console.log(e);
+			    		postArray.push({
+			    			name: file.name,
+			    			type: file.type,
+			    			src: e.target.result
+			    		});
+			    	}; 
+				    reader.readAsDataURL(file);
+				}
+				global.services.uploadImage(postArray, (isok, data) => {
+					if (isok) {
+						
+					}
+				})
 			}
 		}
 	}
