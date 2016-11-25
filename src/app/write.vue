@@ -4,6 +4,7 @@
 		<button @click="getContent()">获取数据</button>
 		<div class="content-show" v-html="content"></div>
 		<input type="file" style="display:none;" ref="uploadimagefile" multiple accept="image/*" @change="uploadImage()">
+		<div class="upload">上传？？？</div>
 	</div>
 </template>
 <script>
