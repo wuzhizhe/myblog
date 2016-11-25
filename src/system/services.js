@@ -1,9 +1,9 @@
 import Vue from 'vue'
 
 const serviceUrl = {
-	'login': 'login',
-	'regist': 'regist',
-	'uploadImage': 'uploadImage'
+	'login': 'login.do',
+	'regist': 'regist.do',
+	'uploadImage': 'image/upload.do'
 };
 
 const services = {
@@ -14,24 +14,30 @@ const services = {
 			timeout: 60000
 		};
 		const _options = _.extend(defaultOptions, options);
-		Vue.http
-		.post(url, body, _options)
-		.then( (response) => {
-			const result = response.body;
-			if (result.success) {
-				if(callback) {
-					callback(true, result.data);
+
+		return new Promise((resolve, reject) => {
+			Vue.http
+			.post(url, body, _options)
+			.then( (response) => {
+				const result = response.body;
+				if (result.success) {
+					if(callback) {
+						callback(true, result.data);
+					}
+					resolve(result.data);
+				} else {
+					if (callback) {
+						callback(false, result.error);
+					}
+					resolve(result.error);
 				}
-			} else {
+			}, (response) => {
 				if (callback) {
-					callback(false, result.error);
+					callback(new Error(response.text()))
 				}
-			}
-		}, (response) => {
-			if (callback) {
-				callback(new Error(response.text()))
-			}
-		})
+				reject(response.text());
+			})
+		});
 	},
 
 	login(params, callback) {
@@ -54,15 +60,15 @@ const services = {
 			}
 		});
 	},
-	uploadImage(params, callback) {
+	uploadImage(params, options, callback) {
 		const url = global.domain + serviceUrl.uploadImage;
 		const paras = {
 			images: params
 		}
-		this.vueResource(url, paras, {}, (isok, data) => {
-			if (callback) {
-				callback(isok, data);
-			}
+		return this.vueResource(url, paras, options || {}, (isok, data) => {
+			// if (callback) {
+			// 	callback(isok, data);
+			// }
 		});
 	}
 }

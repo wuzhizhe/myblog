@@ -62,6 +62,7 @@
 				this.$refs.uploadimagefile.click();
 			},
 			uploadImage() {
+				let _this = this;
 				let postArray = [];
 				let files = this.$refs.uploadimagefile.files;
 				for (let i = 0; i < files.length; i++) {
@@ -74,19 +75,27 @@
 				    
 				    let reader = new FileReader();
 				    reader.onload = function(e) { 
-			    		console.log(e);
 			    		postArray.push({
 			    			name: file.name,
 			    			type: file.type,
-			    			src: e.target.result
+			    			base64Str: e.target.result
 			    		});
+			    		if (i == files.length - 1) {
+							_this.doUploadAndSet(postArray);
+			    		}
 			    	}; 
 				    reader.readAsDataURL(file);
 				}
-				global.services.uploadImage(postArray, (isok, data) => {
-					if (isok) {
-						
+			},
+			doUploadAndSet(postArray) {
+				let _this = this;
+				global.services.uploadImage(JSON.stringify(postArray), {emulateJSON: true})
+				.then((data) => {
+					for (let j = 0; j < data.length; j++) {
+						_this.quill.insertEmbed(j, 'image', global.domain + data[j].address, Quill.sources.USER);
 					}
+				}, (text) => {
+					Myblog.messager.alert(text);
 				})
 			}
 		}
