@@ -2,6 +2,7 @@
 	<div class="write-blog-container">
 		<div class="text-editor" ></div>
 		<button @click="getContent()">获取数据</button>
+		<button @click="saveContent()">保存数据</button>
 		<div class="content-show" v-html="content"></div>
 		<input type="file" style="display:none;" ref="uploadimagefile" multiple accept="image/*" @change="uploadImage()">
 	</div>
@@ -97,6 +98,15 @@
 				}, (text) => {
 					Myblog.messager.alert(text);
 				})
+			},
+			saveContent() {
+				let userinfo = JSON.parse(global.localStorage.getItem('userinfo'));
+				let params = {
+					blogname: '测试博客',
+					userid: userinfo.id,
+					tags: '',
+					content: this.quill.container.firstChild.innerHTML
+				}
 			}
 		}
 	}

@@ -3,7 +3,8 @@ import Vue from 'vue'
 const serviceUrl = {
 	'login': 'login.do',
 	'regist': 'regist.do',
-	'uploadImage': 'image/upload.do'
+	'uploadImage': 'image/upload.do',
+	'saveBlog': 'saveBlog.do'
 };
 
 const services = {
@@ -66,9 +67,6 @@ const services = {
 			images: params
 		}
 		return this.vueResource(url, paras, options || {}, (isok, data) => {
-			// if (callback) {
-			// 	callback(isok, data);
-			// }
 		});
 	}
 }
