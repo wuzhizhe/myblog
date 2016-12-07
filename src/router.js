@@ -3,6 +3,7 @@ import login from './app/login.vue'
 import home from './app/home.vue'
 import signup from './app/signup.vue'
 import write from './app/write.vue'
+import showblog from './app/showblog.vue'
 import bloglist from './app/bloglist.vue'
 
 let routes = [
@@ -10,7 +11,8 @@ let routes = [
     { path: '/home', component: home },
     { path: '/signup', component: signup },
     { path: '/bloglist', component: bloglist },
-    { path: '/write', component: write },
+    { path: '/write/:blogid', component: write },
+    { path: '/showblog/:id', component: showblog },
     { path: '*', redirect: '/login' }
 ]
 
@@ -38,6 +40,9 @@ export default router
 
 export const routesUrl = {
 	'login': '#/login',
-	'signup': '#/signup',
+    'signup': '#/signup',
+    'write': '#/write',
+    'showblog': '#/showblog',
+	'bloglist': '#/bloglist',
 	'home': '#/home'
 }

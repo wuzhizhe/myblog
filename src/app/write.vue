@@ -1,20 +1,40 @@
 <template>
-	<div class="write-blog-container">
+	<div class="write-blog-container" v-if="show">
+		<div class="blog-blogname form-group">
+			<label for="blog-name">{{i18blogname}}</label>
+			<input id="blog-name" class="form-control" type="text" v-model="blogname" >
+		</div>
 		<div class="text-editor" ></div>
-		<button @click="getContent()">获取数据</button>
-		<button @click="saveContent()">保存数据</button>
+		<button @click="saveContent()" class="btn btn-lg btn-primary btn-block btn-save">{{i18savecontent}}</button>
 		<div class="content-show" v-html="content"></div>
 		<input type="file" style="display:none;" ref="uploadimagefile" multiple accept="image/*" @change="uploadImage()">
 	</div>
 </template>
 <script>
+	import Vue from 'vue'
 	import blogheader from './common/header.vue'
 	import Quill from 'quill'
+	import locales from '../locales'
 	import '../../node_modules/quill/dist/quill.core.css'
 	import '../../node_modules/quill/dist/quill.bubble.css'
 	import '../../node_modules/quill/dist/quill.snow.css'
 	export default {
+		beforeCreate() {
+			this.locales = locales[Vue.config.locale]['write'];
+			this.blogid = this.$route.params.blogid;
+			this.data = {
+				show: true,
+				update: false,
+				text: '',
+				content: '',
+				blogname: ''
+			}
+			
+		},
 		components: {
+			
+		},
+		created() {
 			
 		},
 		mounted() {
@@ -48,12 +68,25 @@
 				},
 				theme: 'snow'
 			});
+			if (this.blogid !== 'start') {
+				this.data.update = true;
+				global.services.getBlog({
+					blogid: this.blogid
+				}, {})
+				.then( (data) => {
+					var blog = _.extend(data.blog, data.blogDetail);
+					this.data.blog = blog;
+					this.quill.clipboard.dangerouslyPasteHTML(blog.blogText, 'api');
+					this.data.blogname = blog.blogname;
+				}, (text) => {
+					Myblog.messager.alert(text);
+					return {};
+				});
+			}
+			
 		},
 		data() {
-			return {
-				text: '',
-				content: ''
-			}
+			return _.extend(this.data, this.locales)
 		},
 		methods: {
 			getContent() {
@@ -69,11 +102,9 @@
 				for (let i = 0; i < files.length; i++) {
 				    let file = files[i];
 				    let imageType = /^image\//;
-				    
 				    if (!imageType.test(file.type)) {
 				      continue;
 				    }
-				    
 				    let reader = new FileReader();
 				    reader.onload = function(e) { 
 			    		postArray.push({
@@ -100,21 +131,51 @@
 				})
 			},
 			saveContent() {
-				let userinfo = JSON.parse(global.localStorage.getItem('userinfo'));
-				let params = {
-					blogname: '测试博客',
-					userid: userinfo.id,
-					tags: '',
-					content: this.quill.container.firstChild.innerHTML
-				};
-				global.services.saveBlog(params, {})
-				.then( (data) => {
-					console.log(data);
-				}, (text) => {
-					Myblog.messager.alert(text);
-				});
+				// if (false) {
+				if (this.data.update) {
+					let params1 = {
+						blogid: this.blogid,
+						blogname: this.blogname,
+						tags: '',
+						content: this.quill.container.firstChild.innerHTML
+					};
+					debugger;
+					global.services.updateBlog(params1, {})
+					.then( (data) => {
+						location.href = routesUrl.showblog + '/' + data
+					}, (text) => {
+						Myblog.messager.alert(text);
+					});
+				} else {
+					let userinfo = JSON.parse(global.localStorage.getItem('userinfo'));
+					let params = {
+						blogname: this.blogname,
+						userid: userinfo.id,
+						tags: '',
+						content: this.quill.container.firstChild.innerHTML
+					};
+					global.services.saveBlog(params, {})
+					.then( (data) => {
+						location.href = routesUrl.showblog + '/' + data.blog.id
+					}, (text) => {
+						Myblog.messager.alert(text);
+					});
+				}
+			},
+			getBlogData(blogid) {
+				
 			}
 		}
 	}
 </script>
-<style></style>
+<style scoped>
+	.write-blog-container {
+		margin: 10px;
+	}
+	.text-editor {
+		min-height: 400px;
+	}
+	.btn-save {
+		margin: 20px auto;
+	}
+</style>

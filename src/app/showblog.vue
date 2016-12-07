@@ -1,28 +1,27 @@
 <template>
-	<div class="blog-list-container">
+	<div class="show-blog-container">
 		<div class="show" v-if="show">
-			<ul class="blog-item-container" v-for="blog in blogs">
-				<li><a @click="showBlog(blog.id)" >{{blog.blogname}}</a></li>
-			</ul>
+			<h2 class="blog-title">{{blog.blogname}}</h2>
+			<div class="blog-content" v-html="blog.blogText"></div>
 		</div>
 	</div>
 </template>
 <script>
-
 	export default {
 		beforeCreate() {
 			let _this = this;
 			_this.data = {
 				show: false,
-				blogs: []
+				blog: {}
 			};
 			let userinfo = JSON.parse(global.localStorage.getItem('userinfo'));
-			global.services.getBlogList({
-				userid: userinfo.id+ ''
+			global.services.getBlog({
+				blogid: this.$route.params.id
 			}, {})
 			.then( (data) => {
 				console.log(data);
-				_this.data.blogs = data;
+				var blog = _.extend(data.blog, data.blogDetail);
+				_this.data.blog = blog;
 				_this.data.show = true;
 			}, (text) => {
 				Myblog.messager.alert(text);
@@ -31,14 +30,7 @@
 		},
 		data() {
 			return this.data;
-		},
-		methods: {
-			showBlog(id) {
-				location.href = routesUrl.showblog + '/' + id
-			}
 		}
 	}
 </script>
-<style>
-	
-</style>
+<style></style>

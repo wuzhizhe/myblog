@@ -23,5 +23,9 @@ export default {
 		i18signupfailed: '注册失败！',
 		i18allrequired: '全部必填！',
 		i18passwordequal: '两次输入密码必须相同！'
+	},
+	'write': {
+		i18savecontent: '保存数据',
+		i18blogname: '博客标题'
 	}
 }

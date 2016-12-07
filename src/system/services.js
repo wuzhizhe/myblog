@@ -5,7 +5,9 @@ const serviceUrl = {
 	'regist': 'regist.do',
 	'uploadImage': 'image/upload.do',
 	'saveBlog': 'saveBlog.do',
-	'getBlogList': 'getBlogList.do'
+	'getBlog': 'getBlog.do',
+	'getBlogList': 'getBlogList.do',
+	'updateBlog': 'updateBlog.do'
 };
 
 const services = {
@@ -76,6 +78,14 @@ const services = {
 	},
 	getBlogList(params, options) {
 		const url = global.domain + serviceUrl.getBlogList;
+		return this.vueResource(url, params, options || {})
+	},
+	getBlog(params, options) {
+		const url = global.domain + serviceUrl.getBlog;
+		return this.vueResource(url, params, options || {})
+	},
+	updateBlog (params, options) {
+		const url = global.domain + serviceUrl.updateBlog;
 		return this.vueResource(url, params, options || {})
 	}
 }

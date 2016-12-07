@@ -62,7 +62,6 @@
 					telphone: this.telphone,
 					nickname: this.nickname
 				}, (isok, data) => {
-					debugger;
 					if (isok) {
 						Myblog.messager.alert(this.locales.i18signupsuccess);
 					} else {
