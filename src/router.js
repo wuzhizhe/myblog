@@ -3,11 +3,13 @@ import login from './app/login.vue'
 import home from './app/home.vue'
 import signup from './app/signup.vue'
 import write from './app/write.vue'
+import bloglist from './app/bloglist.vue'
 
 let routes = [
     { path: '/login', component: login },
     { path: '/home', component: home },
     { path: '/signup', component: signup },
+    { path: '/bloglist', component: bloglist },
     { path: '/write', component: write },
     { path: '*', redirect: '/login' }
 ]

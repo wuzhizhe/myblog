@@ -4,7 +4,8 @@ const serviceUrl = {
 	'login': 'login.do',
 	'regist': 'regist.do',
 	'uploadImage': 'image/upload.do',
-	'saveBlog': 'saveBlog.do'
+	'saveBlog': 'saveBlog.do',
+	'getBlogList': 'getBlogList.do'
 };
 
 const services = {
@@ -17,7 +18,7 @@ const services = {
 		const _options = _.extend(defaultOptions, options);
 
 		return new Promise((resolve, reject) => {
-			Vue.http
+		Vue.http
 			.post(url, body, _options)
 			.then( (response) => {
 				const result = response.body;
@@ -68,6 +69,14 @@ const services = {
 		}
 		return this.vueResource(url, paras, options || {}, (isok, data) => {
 		});
+	},
+	saveBlog(params, options) {
+		const url = global.domain + serviceUrl.saveBlog;
+		return this.vueResource(url, params, options || {})
+	},
+	getBlogList(params, options) {
+		const url = global.domain + serviceUrl.getBlogList;
+		return this.vueResource(url, params, options || {})
 	}
 }
 

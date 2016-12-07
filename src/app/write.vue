@@ -90,7 +90,7 @@
 			},
 			doUploadAndSet(postArray) {
 				let _this = this;
-				global.services.uploadImage(JSON.stringify(postArray), {emulateJSON: true})
+				global.services.uploadImage(JSON.stringify(postArray), {})
 				.then((data) => {
 					for (let j = 0; j < data.length; j++) {
 						_this.quill.insertEmbed(j, 'image', global.domain + data[j].address, Quill.sources.USER);
@@ -106,7 +106,13 @@
 					userid: userinfo.id,
 					tags: '',
 					content: this.quill.container.firstChild.innerHTML
-				}
+				};
+				global.services.saveBlog(params, {})
+				.then( (data) => {
+					console.log(data);
+				}, (text) => {
+					Myblog.messager.alert(text);
+				});
 			}
 		}
 	}
