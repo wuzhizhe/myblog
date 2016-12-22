@@ -25,7 +25,7 @@ export default {
 		i18passwordequal: '两次输入密码必须相同！'
 	},
 	'write': {
-		i18savecontent: '保存数据',
+		i18savecontent: '保存',
 		i18blogname: '博客标题'
 	}
 }

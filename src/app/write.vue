@@ -1,5 +1,6 @@
 <template>
 	<div class="write-blog-container" v-if="show">
+		<blogheader></blogheader>
 		<div class="blog-blogname form-group">
 			<label for="blog-name">{{i18blogname}}</label>
 			<input id="blog-name" class="form-control" type="text" v-model="blogname" >
@@ -32,7 +33,7 @@
 			
 		},
 		components: {
-			
+			blogheader
 		},
 		created() {
 			
@@ -60,7 +61,14 @@
 			this.quill = new Quill('.text-editor', {
 				modules: {
 					toolbar: {
-						container: [ ['bold', 'italic', 'underline', 'strike'], ['image']],
+						container: [ 
+							[{ 'size': ['small', false, 'large', 'huge'] }],
+							['bold', 'italic', 'underline', 'strike', 'link'], 
+							[{ 'color': [] }, { 'background': [] }],
+							[{ 'header': 1 }, { 'header': 2 }],
+							['code-block'],
+							['image']	
+						],
 						handlers: {
 							image: this.imageHandler
 						}
@@ -131,7 +139,6 @@
 				})
 			},
 			saveContent() {
-				// if (false) {
 				if (this.data.update) {
 					let params1 = {
 						blogid: this.blogid,
@@ -139,7 +146,6 @@
 						tags: '',
 						content: this.quill.container.firstChild.innerHTML
 					};
-					debugger;
 					global.services.updateBlog(params1, {})
 					.then( (data) => {
 						location.href = routesUrl.showblog + '/' + data
@@ -170,12 +176,12 @@
 </script>
 <style scoped>
 	.write-blog-container {
-		margin: 10px;
+		margin: 0.625em;
 	}
 	.text-editor {
-		min-height: 400px;
+		min-height: 25em;
 	}
 	.btn-save {
-		margin: 20px auto;
+		margin: 1.25em auto;
 	}
 </style>

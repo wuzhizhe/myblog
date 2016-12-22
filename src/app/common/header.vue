@@ -15,7 +15,7 @@
 		},
 		methods: {
 			goHome() {
-				location.href = routesUrl.home;
+				location.href = routesUrl.bloglist;
 			},
 			goUserInfo() {
 				
@@ -26,8 +26,8 @@
 <style scoped>
 	.header-container {
 		display: flex;
-		padding: 0.7em;
-	    height: 4em;
+		padding: 0;
+	    height: 3em;
 	    align-items: center;
 	}
 	.blog-icon-show {

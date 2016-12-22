@@ -1,14 +1,15 @@
 <template>
 	<div class="blog-list-container">
+		<blog-header></blog-header>
 		<div class="show" v-if="show">
-			<ul class="blog-item-container" v-for="blog in blogs">
-				<li><a @click="showBlog(blog.id)" >{{blog.blogname}}</a></li>
+			<ul class="blog-item-container" >
+				<li v-for="blog in blogs"><a class="blog-item" v-bind:blogid="blog.id" @click="showBlog(blog.id)" >{{blog.blogname}}</a></li>
 			</ul>
 		</div>
 	</div>
 </template>
 <script>
-
+	import blogHeader from './common/header.vue'
 	export default {
 		beforeCreate() {
 			let _this = this;
@@ -29,6 +30,9 @@
 				return {};
 			});
 		},
+		components: {
+			blogHeader
+		},
 		data() {
 			return this.data;
 		},
@@ -39,6 +43,19 @@
 		}
 	}
 </script>
-<style>
-	
+<style scoped>
+	.blog-item {
+		cursor: pointer;
+	}
+	.blog-list-container {
+		padding: 0.7em;
+	}
+	.blog-item-container {
+		padding-left: 5px;
+	}
+	.blog-item-container li {
+		list-style: none;
+		height: 2.25em;
+		padding: 0.25em;
+	}
 </style>
