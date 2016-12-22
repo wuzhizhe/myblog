@@ -27,5 +27,13 @@ export default {
 	'write': {
 		i18savecontent: '保存',
 		i18blogname: '博客标题'
+	},
+	'home': {
+		i18userinfo: '用户资料',
+		i18changepwd: '修改密码',
+		i18logininfo: '登录历史',
+		i18bloglist: '博客列表',
+		i18usercenter: '用户中心',
+		i18logout: '退出账号'
 	}
 }
