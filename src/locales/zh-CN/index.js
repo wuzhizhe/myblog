@@ -35,5 +35,8 @@ export default {
 		i18bloglist: '博客列表',
 		i18usercenter: '用户中心',
 		i18logout: '退出账号'
+	},
+	'changehead': {
+		'i18uploadimage': '上传头像'
 	}
 }

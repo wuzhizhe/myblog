@@ -129,7 +129,10 @@
 			},
 			doUploadAndSet(postArray) {
 				let _this = this;
-				global.services.uploadImage(JSON.stringify(postArray), {})
+				global.services.uploadImage({
+					images: JSON.stringify(postArray),
+					dir: 'images'
+				}, {})
 				.then((data) => {
 					for (let j = 0; j < data.length; j++) {
 						_this.quill.insertEmbed(j, 'image', global.domain + data[j].address, Quill.sources.USER);

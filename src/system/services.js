@@ -7,6 +7,7 @@ const serviceUrl = {
 	'saveBlog': 'saveBlog.do',
 	'getBlog': 'getBlog.do',
 	'getBlogList': 'getBlogList.do',
+	'updateheadimage': 'updateheadimage.do',
 	'updateBlog': 'updateBlog.do'
 };
 
@@ -67,7 +68,8 @@ const services = {
 	uploadImage(params, options, callback) {
 		const url = global.domain + serviceUrl.uploadImage;
 		const paras = {
-			images: params
+			dir: params.dir,
+			images: params.images
 		}
 		return this.vueResource(url, paras, options || {}, (isok, data) => {
 		});
@@ -82,6 +84,10 @@ const services = {
 	},
 	getBlog(params, options) {
 		const url = global.domain + serviceUrl.getBlog;
+		return this.vueResource(url, params, options || {})
+	},
+	updateheadimage(params, options) {
+		const url = global.domain + serviceUrl.updateheadimage;
 		return this.vueResource(url, params, options || {})
 	},
 	updateBlog (params, options) {

@@ -35,7 +35,7 @@ module.exports = {
       }, 
       {
         test: /\.(jpe?g|png|gif)$/i,
-        loader: 'url',
+        loader: 'file',
         query: {
           limit: 10000,
           name: '[name].[ext]?[hash:7]'

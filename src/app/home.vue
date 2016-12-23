@@ -2,12 +2,12 @@
 	<div class="home-container">
 		<div class="user-center">{{i18usercenter}}</div>
 		<div class="user-image-log-info">
-			<div class="user-name-image"><img src="../images/icons/NinjaHead_100.png" alt=""></div>
+			<div class="user-name-image"><img v-bind:src="imageSrc" alt=""></div>
 			<div class="fisrt-day"></div>
 			<div class="all-day-sum"></div>
 		</div>
 		<div class="user-info-list">
-			<div class="user-info go-to-another-page">{{i18userinfo}}</div>
+			<div class="user-info go-to-another-page" @click="goTo('#/changehead')">{{i18userinfo}}</div>
 			<div class="change-password go-to-another-page">{{i18changepwd}}</div>
 			<div class="login-history go-to-another-page">{{i18logininfo}}</div>
 			<div class="my-bloglist go-to-another-page">{{i18bloglist}}</div>
@@ -21,7 +21,10 @@
 	import locales from '../locales'
 	export default {
 		beforeCreate() {
+			let userinfo = JSON.parse(global.localStorage.getItem('userinfo'));
+			debugger;
 			this.data = {
+				imageSrc: global.domain + userinfo.headimage
 			};
 			this.locales = locales[Vue.config.locale]['home'];
 		},
@@ -30,6 +33,11 @@
 		},
 		data() {
 			return _.extend(this.data, this.locales);
+		},
+		methods: {
+			goTo(url) {
+				location.href = url;
+			}
 		}
 	}
 </script>
