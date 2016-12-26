@@ -1,0 +1,80 @@
+<template>
+	<div class="change-password-container">
+		<input type="text" required v-model="password" class="form-control" v-bind:placeholder="i18password">
+		<input type="text" required v-model="newpassword" class="form-control" v-bind:placeholder="i18newpassword">
+		<input type="text" required v-model="newpasswordagain" class="form-control" v-bind:placeholder="i18newpasswordagain">
+		<div class="password-not-equal-tip" v-show="showtip">{{i18passwordequal}}</div>
+		<button class="btn btn-lg btn-primary btn-block btn-changepwd" @click="beforeSubmit()">{{i18commit}}</button>
+	</div>
+</template>
+<script>
+	import Vue from 'vue'
+	import md5 from 'crypto-js/md5'
+	import locales from '../locales'
+	export default {
+		beforeCreate() {
+			this.data = {
+				password: '',
+				newpassword: '',
+				showtip: false,
+				newpasswordagain: ''
+			};
+			this.locales = locales[Vue.config.locale]['changepassword'];
+		},
+		watch: {
+			newpassword(newValue) {
+				if (newValue !== this.newpasswordagain) {
+					this.showtip = true;
+				} else {
+					this.showtip = false;
+				}
+			},
+			newpasswordagain(newValue) {
+				if (newValue !== this.newpassword) {
+					this.showtip = true;
+				} else {
+					this.showtip = false;
+				}
+			}
+		},
+		data() {
+			return _.extend(this.data, this.locales);
+		},
+		methods: {
+			changepassword() {
+				global.services.changepassword({
+					oldpassword: '',
+					newpassword: ''
+				}, {
+					emulateJSON: true
+				}).then((data) => {
+
+				}, (text) => {
+				
+				});
+			},
+			beforeSubmit() {
+				if (!this.newpassword || !this.newpasswordagain || !this.password) {
+					Myblog.messager.alert(this.locales.i18allrequired);
+					return false;
+				}
+				if (this.newpassword != this.newpasswordagain) {
+					Myblog.messager.alert(this.locales.i18passwordequal);
+					return false;
+				}
+				this.changepassword();
+			}
+		}
+	}
+</script>
+<style scoped>
+	.password-not-equal-tip {
+	    color: red;
+	    font-size: 12px;
+	    margin-bottom: 10px;
+	}
+	.btn-changepwd {
+		margin: 0 auto;
+		width: 300px;
+	}
+</style>

@@ -38,5 +38,13 @@ export default {
 	},
 	'changehead': {
 		'i18uploadimage': '上传头像'
+	},
+	'changepassword': {
+		i18password: '密码',
+		i18newpassword: '新密码',
+		i18newpasswordagain: '新密码',
+		i18passwordequal: '两次输入密码必须相同！',
+		i18commit: '提交',
+		i18allrequired: '全部必填！'
 	}
 }

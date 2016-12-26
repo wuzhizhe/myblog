@@ -22,7 +22,6 @@
 	export default {
 		beforeCreate() {
 			let userinfo = JSON.parse(global.localStorage.getItem('userinfo'));
-			debugger;
 			this.data = {
 				imageSrc: global.domain + userinfo.headimage
 			};

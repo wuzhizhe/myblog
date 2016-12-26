@@ -8,7 +8,8 @@ const serviceUrl = {
 	'getBlog': 'getBlog.do',
 	'getBlogList': 'getBlogList.do',
 	'updateheadimage': 'updateheadimage.do',
-	'updateBlog': 'updateBlog.do'
+	'updateBlog': 'updateBlog.do',
+	'changepassword': 'changepassword.do'
 };
 
 const services = {
@@ -92,6 +93,10 @@ const services = {
 	},
 	updateBlog (params, options) {
 		const url = global.domain + serviceUrl.updateBlog;
+		return this.vueResource(url, params, options || {})
+	},
+	changepassword (params, options) {
+		const url = global.domain + serviceUrl.changepassword;
 		return this.vueResource(url, params, options || {})
 	}
 }
