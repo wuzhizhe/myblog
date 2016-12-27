@@ -42,9 +42,11 @@
 		},
 		methods: {
 			changepassword() {
+				let userinfo = JSON.parse(global.localStorage.getItem('userinfo'));
 				global.services.changepassword({
-					oldpassword: '',
-					newpassword: ''
+					oldpassword: this.data.password,
+					newpassword: this.data.newpassword,
+					username: userinfo.username
 				}, {
 					emulateJSON: true
 				}).then((data) => {
@@ -68,6 +70,16 @@
 	}
 </script>
 <style scoped>
+	.change-password-container {
+	    display: flex;
+	    flex-flow: column;
+	    justify-content: center;
+	    align-items: center;
+	}
+	.change-password-container input {
+		margin: 10px 0 10px 0;
+		max-width: 300px;
+	}
 	.password-not-equal-tip {
 	    color: red;
 	    font-size: 12px;

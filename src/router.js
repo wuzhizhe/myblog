@@ -6,6 +6,7 @@ import write from './app/write.vue'
 import showblog from './app/showblog.vue'
 import bloglist from './app/bloglist.vue'
 import changehead from './app/changehead.vue'
+import changepassword from './app/changepassword.vue'
 
 let routes = [
     { path: '/login', component: login },
@@ -15,6 +16,7 @@ let routes = [
     { path: '/write/:blogid', component: write },
     { path: '/showblog/:id', component: showblog },
     { path: '/changehead', component: changehead },
+    { path: '/changepassword', component: changepassword },
     { path: '*', redirect: '/login' }
 ]
 
@@ -46,6 +48,7 @@ export const routesUrl = {
     'write': '#/write',
     'showblog': '#/showblog',
     'bloglist': '#/bloglist',
-	'changehead': '#/changehead',
+    'changehead': '#/changehead',
+	'changepassword': '#/changepassword',
 	'home': '#/home'
 }

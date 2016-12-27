@@ -8,7 +8,7 @@
 		</div>
 		<div class="user-info-list">
 			<div class="user-info go-to-another-page" @click="goTo('#/changehead')">{{i18userinfo}}</div>
-			<div class="change-password go-to-another-page">{{i18changepwd}}</div>
+			<div class="change-password go-to-another-page" @click="goTo('#/changepassword')">{{i18changepwd}}</div>
 			<div class="login-history go-to-another-page">{{i18logininfo}}</div>
 			<div class="my-bloglist go-to-another-page">{{i18bloglist}}</div>
 			<div class="logout">{{i18logout}}</div>
