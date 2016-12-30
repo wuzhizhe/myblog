@@ -74,6 +74,8 @@
 				})
 				.then((data) => {
 					_this.data.imageSrc = global.domain + data.headimage;
+					_this.userinfo.headimage = data.headimage;
+					global.localStorage.setItem('userinfo', JSON.stringify(_this.userinfo));
 				}, (text) => {
 					Myblog.messager.alert(text);
 				});

@@ -1,5 +1,5 @@
 export default {
-	'project-title': '个人博客',
+	'project-title': '呵呵',
 	'login': {
 		i18username: '用户名',
 		i18password: '密码',
@@ -40,11 +40,18 @@ export default {
 		'i18uploadimage': '上传头像'
 	},
 	'changepassword': {
-		i18password: '密码',
+		i18password: '原密码',
 		i18newpassword: '新密码',
 		i18newpasswordagain: '新密码',
 		i18passwordequal: '两次输入密码必须相同！',
 		i18commit: '提交',
-		i18allrequired: '全部必填！'
+		i18allrequired: '全部必填！',
+		i18changesuc: '修改成功！'
+	},
+	'loginhis': {
+		i18loginhistitle: '登录历史',
+		i18nickname: '用户昵称',
+		i18loginip: '登录IP',
+		i18logintime: '登录时间'
 	}
 }

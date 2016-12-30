@@ -7,6 +7,7 @@ import showblog from './app/showblog.vue'
 import bloglist from './app/bloglist.vue'
 import changehead from './app/changehead.vue'
 import changepassword from './app/changepassword.vue'
+import loginhis from './app/loginhis.vue'
 
 let routes = [
     { path: '/login', component: login },
@@ -17,6 +18,7 @@ let routes = [
     { path: '/showblog/:id', component: showblog },
     { path: '/changehead', component: changehead },
     { path: '/changepassword', component: changepassword },
+    { path: '/loginhis', component: loginhis },
     { path: '*', redirect: '/login' }
 ]
 
@@ -49,6 +51,7 @@ export const routesUrl = {
     'showblog': '#/showblog',
     'bloglist': '#/bloglist',
     'changehead': '#/changehead',
-	'changepassword': '#/changepassword',
+    'changepassword': '#/changepassword',
+	'loginhis': '#/loginhis',
 	'home': '#/home'
 }

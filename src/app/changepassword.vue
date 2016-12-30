@@ -1,8 +1,8 @@
 <template>
 	<div class="change-password-container">
-		<input type="text" required v-model="password" class="form-control" v-bind:placeholder="i18password">
-		<input type="text" required v-model="newpassword" class="form-control" v-bind:placeholder="i18newpassword">
-		<input type="text" required v-model="newpasswordagain" class="form-control" v-bind:placeholder="i18newpasswordagain">
+		<input type="password" required v-model="password" class="form-control" v-bind:placeholder="i18password">
+		<input type="password" required v-model="newpassword" class="form-control" v-bind:placeholder="i18newpassword">
+		<input type="password" required v-model="newpasswordagain" class="form-control" v-bind:placeholder="i18newpasswordagain">
 		<div class="password-not-equal-tip" v-show="showtip">{{i18passwordequal}}</div>
 		<button class="btn btn-lg btn-primary btn-block btn-changepwd" @click="beforeSubmit()">{{i18commit}}</button>
 	</div>
@@ -44,15 +44,17 @@
 			changepassword() {
 				let userinfo = JSON.parse(global.localStorage.getItem('userinfo'));
 				global.services.changepassword({
-					oldpassword: this.data.password,
-					newpassword: this.data.newpassword,
+					oldpassword: md5(this.data.password).toString().toUpperCase(),
+					newpassword: md5(this.data.newpassword).toString().toUpperCase(),
 					username: userinfo.username
 				}, {
 					emulateJSON: true
 				}).then((data) => {
-
+					Myblog.messager.alert(this.data.i18changesuc);
+					global.localStorage.setItem('userinfo', null);
+					location.href = routesUrl.login;
 				}, (text) => {
-				
+					Myblog.messager.alert(text);
 				});
 			},
 			beforeSubmit() {
