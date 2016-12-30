@@ -15,10 +15,10 @@
 		},
 		methods: {
 			goHome() {
-				location.href = routesUrl.bloglist;
+				
 			},
 			goUserInfo() {
-				
+				location.href = routesUrl.home;
 			}
 		}
 	}

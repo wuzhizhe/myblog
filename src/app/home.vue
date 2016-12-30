@@ -11,7 +11,7 @@
 			<div class="change-password go-to-another-page" @click="goTo('#/changepassword')">{{i18changepwd}}</div>
 			<div class="login-history go-to-another-page" @click="goTo('#/loginhis')">{{i18logininfo}}</div>
 			<div class="my-bloglist go-to-another-page" @click="goTo('#/bloglist')">{{i18bloglist}}</div>
-			<div class="logout">{{i18logout}}</div>
+			<div class="logout" @click="logout()">{{i18logout}}</div>
 		</div>
 	</div>
 </template>
@@ -36,6 +36,10 @@
 		methods: {
 			goTo(url) {
 				location.href = url;
+			},
+			logout() {
+				global.localStorage.removeItem('userinfo');
+				location.href = routesUrl.login;
 			}
 		}
 	}
