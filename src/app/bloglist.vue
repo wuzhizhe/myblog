@@ -22,7 +22,6 @@
 				userid: userinfo.id+ ''
 			}, {})
 			.then( (data) => {
-				console.log(data);
 				_this.data.blogs = data;
 				_this.data.show = true;
 			}, (text) => {

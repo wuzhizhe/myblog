@@ -30,17 +30,19 @@ const config = {
 
 let router = new Router(config)
 
-// router.beforeEach((to, from, next) => {
-//     if (global.localStorage.userinfo && to.path === '/login') {
-//         next('/home')
-//     } else if (!global.localStorage.userinfo && to.path === '/login') {
-//         next()
-//     } else if (!global.localStorage.userinfo && to.path !== '/login') {
-//         next('/login')
-//     } else {
-//         next()
-//     }
-// })
+router.beforeEach((to, from, next) => {
+    if (!global.localStorage.userinfo && (to.path === '/login' || to.path === '/signup')) {
+        next();
+        return;
+    }
+    if (!global.localStorage.userinfo) {
+        next('/login')
+    } else if (global.localStorage.userinfo && to.path === '/login') {
+        next('/home')
+    } else {
+        next();
+    }
+})
 
 export default router
 

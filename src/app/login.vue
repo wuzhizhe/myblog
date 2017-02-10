@@ -28,6 +28,7 @@
 			this.locales = locales[Vue.config.locale]['login'];
 		},
 		data() {
+			//alert(window.devicePixelRatio)
 			return _.extend(this.data, this.locales);
 		},
 		computed: {
@@ -80,12 +81,12 @@
 	
 	.form-signin,
 	.no-count {
-	  max-width: 330px;
-	  padding: 15px;
+	  max-width: 90%;
+	  padding: 1em;
 	  margin: 0 auto;
 	}
 	.form-signin .form-signin-heading, .form-signin .checkbox {
-	  margin-bottom: 10px;
+	  margin-bottom: 1em;
 	}
 	.form-signin .checkbox {
 	  font-weight: normal;
@@ -96,19 +97,19 @@
 	  -webkit-box-sizing: border-box;
 	     -moz-box-sizing: border-box;
 	          box-sizing: border-box;
-	  padding: 10px;
-	  font-size: 16px;
+	  padding: 1em;
+	  font-size: 1.2em;
 	}
 	.form-signin .form-control:focus {
 	  z-index: 2;
 	}
 	.form-signin input[type="text"] {
-	  margin-bottom: 10px;
+	  margin-bottom: 1em;
 	  border-bottom-right-radius: 0;
 	  border-bottom-left-radius: 0;
 	}
 	.form-signin input[type="password"] {
-	  margin-bottom: 10px;
+	  margin-bottom: 1em;
 	  border-top-left-radius: 0;
 	  border-top-right-radius: 0;
 	}

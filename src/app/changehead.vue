@@ -4,7 +4,7 @@
 			<img v-bind:src="imageSrc"  alt="" class="user-header-image">
 		</div>
 		<div class="upload-image-container">
-			<button class="upload" @click="showUploadWindow()">{{i18uploadimage}}</button>
+			<button class="upload btn btn-lg btn-primary btn-block" @click="showUploadWindow()">{{i18uploadimage}}</button>
 			<input type="file"  ref="uploadimagefile" class="upload-head-image" multiple accept="image/*" @change="uploadImage()" >
 		</div>
 	</div>
@@ -55,7 +55,7 @@
 					images: JSON.stringify(postArray),
 					dir: 'headeimages'
 				}, {
-
+					emulateJSON: true
 				})
 				.then((data) => {
 					_this.updateUserImage(data);
@@ -84,6 +84,16 @@
 	}
 </script>
 <style scoped>
+	.head-image-container {
+		margin: 20px auto;	
+	}
+	.upload-image-container {
+		display: flex;
+    	justify-content: center;
+	}
+	.upload-image-container button {
+		max-width: 200px;
+	}
 	.upload-head-image {
 		display: none;
 	}

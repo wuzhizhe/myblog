@@ -1,1 +1,1 @@
-global.domain = 'http://127.0.0.1:8089/'
+global.domain = 'http://10.16.10.158:8089/'

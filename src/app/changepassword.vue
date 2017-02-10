@@ -51,7 +51,7 @@
 					emulateJSON: true
 				}).then((data) => {
 					Myblog.messager.alert(this.data.i18changesuc);
-					global.localStorage.setItem('userinfo', null);
+					// global.localStorage.setItem('userinfo', null);
 					location.href = routesUrl.login;
 				}, (text) => {
 					Myblog.messager.alert(text);

@@ -33,7 +33,6 @@
 				emulateJSON: true
 			})
 			.then( (data) => {
-				console.log(data);
 				this.data.loginhiss = data;
 				this.data.show = true;
 			}, (text) => {
@@ -50,6 +49,9 @@
 	}
 </script>
 <style>
+    .loginhis-item-container {
+    	padding: 0;
+    }
 	.loginhis-item {
 		display: flex;
 		flex-direction: row;
