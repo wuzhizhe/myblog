@@ -10,7 +10,10 @@ const serviceUrl = {
 	'updateheadimage': 'updateheadimage.do',
 	'updateBlog': 'updateBlog.do',
 	'changepassword': 'changepassword.do',
-	'loginhis': 'loginhis.do'
+	'loginhis': 'loginhis.do',
+	'saveComment': 'saveComment.do',
+	'getComments': 'getComments.do',
+	'updateComment': 'updateComment.do'
 };
 
 const services = {
@@ -102,6 +105,18 @@ const services = {
 	},
 	loginhis (params, options) {
 		const url = global.domain + serviceUrl.loginhis;
+		return this.vueResource(url, params, options || {})
+	},
+	saveComment (params, options) {
+		const url = global.domain + serviceUrl.saveComment;
+		return this.vueResource(url, params, options || {})
+	},
+	getComments (params, options) {
+		const url = global.domain + serviceUrl.getComments;
+		return this.vueResource(url, params, options || {})
+	},
+	updateComment (params, options) {
+		const url = global.domain + serviceUrl.updateComment;
 		return this.vueResource(url, params, options || {})
 	}
 }
